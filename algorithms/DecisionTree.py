@@ -9,7 +9,6 @@ class DecisionTree:
     def __init__(self, data_set, max_depth=5):
         self.data = data_set
         self.max_depth = max_depth
-        self.set_entropy = self.entropy(self.data)
         self.possible_splits = self.generate_attribute_sets()
         self.root = None
 
@@ -45,45 +44,30 @@ class DecisionTree:
     For a given attribute it chooses 
     '''
     def choose_best_split(self, data):
-        best_gain = -1
+        best_gain = 0
         best_split = None
         dna_length = len(data[0][1])
         for i in range(dna_length):
             for split in self.possible_splits:
                 left_subset, right_subset = self.split_data(data, i, split)
+
+                if not left_subset or not right_subset:
+                    continue
+
                 current_gain = self.information_gain(data, left_subset, right_subset)
                 if current_gain > best_gain:
                     best_gain = current_gain
                     best_split = (i, split, left_subset, right_subset)
         return best_gain, best_split
-
-    '''
-    For a given attribute value it finds each instance of its appearance in the data_set
-    '''
-    def attribute_value_subset(self, attribute_position, attribute_value):
-        entropy_subset = 0
-        for class_value, dna in self.data_set:
-            if dna[attribute_position] == attribute_value:
-                entropy_subset.append((class_value, dna))
-        return entropy_subset
     
     def generate_attribute_sets(self):
-        values = {"A", "C", "G", "T"}
-        sorted_vals = sorted(list(values))
+        values = sorted(["A", "C", "G", "T"])
         attribute_sets = []
 
         # We allow only subsets of size 1 and 2 (3 is included due to 4 - 1 = 3)
         for i in range(1, 3):
-            for left_of_split in combinations(sorted_vals, i):
-
-                right_of_split = tuple(values - set(left_of_split))
-                if len(left_of_split) == len(right_of_split) and left_of_split > right_of_split:
-                    continue
-
-                attribute_sets.append((left_of_split, right_of_split))
-
-        for L, R in attribute_sets:
-            print(f"{L} vs {R}")
+            for left_of_split in combinations(values, i):
+                attribute_sets.append(set(left_of_split))
         
         return attribute_sets
     
@@ -99,15 +83,16 @@ class DecisionTree:
     def decision_tree_id3_mod(self, data, depth):
 
         # STOP CONDITIONS
+        # Data is None
         if not data:
             return Node(class_value=0)
         
-        # 2. Czysty węzeł (wszystkie przykłady tej samej klasy)
+        # Classes have been sorted
         first_class = data[0][0]
         if all(row[0] == first_class for row in data):
             return Node(class_value=first_class)
 
-        # 3. Osiągnięto maksymalną głębokość
+        # Reached maximumk depth of tree
         if depth >= self.max_depth:
             return Node(class_value=self.get_majority_class(data))
         
@@ -128,4 +113,20 @@ class DecisionTree:
             left_node=left_node,
             right_node=right_node
         )
+
+def print_tree(node, depth=0):
+    indent = "    " * depth
+
+    if node.class_value is not None:
+        print(f"{indent}|--- WYNIK: Klasa {node.class_value}")
+        return
+
+    print(f"{indent}|--- CZY Pozycja DNA[{node.attribute_pos}] jest w {node.split_condition_group}?")
+
+    print(f"{indent}|    [TAK]")
+    print_tree(node.left_node, depth + 1)
+
+    print(f"{indent}|    [NIE]")
+    print_tree(node.right_node, depth + 1)
+
     
