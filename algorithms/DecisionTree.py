@@ -36,8 +36,7 @@ class DecisionTree:
 
         w_left = len(left) / total_S
         w_right = len(right) / total_S
-        inf_gain = self.entropy(parent) - (w_left * self.entropy(left)) + (w_right * self.entropy(right))
-        
+        inf_gain = self.entropy(parent) - (w_left * self.entropy(left)) - (w_right * self.entropy(right))        
         return inf_gain
 
     '''
