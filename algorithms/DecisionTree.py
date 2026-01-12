@@ -113,6 +113,15 @@ class DecisionTree:
             right_node=right_node
         )
 
+    def predict(self, sample):
+        current_node = self.root
+        while current_node.class_value is None:
+            if sample[current_node.attribute_pos] in current_node.split_condition_group:
+                current_node = current_node.left_node
+            else:
+                current_node = current_node.right_node
+        return current_node.class_value
+
 def print_tree(node, depth=0):
     indent = "    " * depth
 
