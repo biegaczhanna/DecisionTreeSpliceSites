@@ -127,3 +127,18 @@ def test_split_data(tree_instance, data, attr_position, group, expected_left, ex
     left, right = tree_instance.split_data(data, attr_position, group)
     assert left == expected_left
     assert right == expected_right
+
+@pytest.mark.parametrize("training_dataset, DNA_to_classify, expected_class", [
+    # if A at position 0 then it belongs to class 1
+    ([(1, "AAAA"), (1, "ACCC"), (0, "CCCC"), (0, "CGGG")], "AAAA", 1),
+    ([(1, "AAAA"), (1, "ACCC"), (0, "CCCC"), (0, "CGGG")], "TTTT", 0),
+    ([(1, "AAAA"), (1, "ACCC"), (0, "CCCC"), (0, "CGGG")], "ATTT", 1),
+
+])
+def test_predict_simple(tree_instance, training_dataset, DNA_to_classify, expected_class):
+    data = training_dataset
+    
+    dt = DecisionTree(data, max_depth=2)
+    dt.train()
+    
+    assert dt.predict(DNA_to_classify) == expected_class
