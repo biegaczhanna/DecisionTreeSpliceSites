@@ -1,10 +1,11 @@
+'''
+    Author: Ada Jacyna, Hanna Biegacz
+    Implementation for a decision tree clasificator.
+'''
 import math
 from itertools import combinations
 from algorithms.Node import Node
 
-'''
-Implementation for a decision tree clasificator
-'''
 class DecisionTree:
     def __init__(self, data_set, max_depth=5, min_samples_split=0, min_gain=0.0):
         self.data = data_set

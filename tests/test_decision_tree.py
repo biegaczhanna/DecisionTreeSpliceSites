@@ -1,3 +1,8 @@
+'''
+    Author: Hanna Biegacz
+    This file contains unit tests for the methods used by the DecisionTree class.
+'''
+
 import pytest
 import math
 from algorithms.DecisionTree import DecisionTree

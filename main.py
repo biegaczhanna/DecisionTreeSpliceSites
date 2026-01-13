@@ -1,3 +1,8 @@
+'''
+  Author: Hanna Biegacz, Ada Jacyna
+  Main file for the decision tree classification
+'''
+
 from file_parsing.FileParser import FileParser as file_parser
 from algorithms.DecisionTree import DecisionTree, print_tree
 from contextlib import redirect_stdout
