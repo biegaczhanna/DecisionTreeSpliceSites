@@ -14,17 +14,51 @@ Jeżeli chodzi o dane to w tym pliku znajdują się przykłady donorów, a w tym
 # Dobór parametrów
 Za pomocą metody grid search przeanalizowano szeroki zakres doboru parametrów dla drzewa decyzyjnego. Poniżej przedstawione są wyniki uzyskane na zbiorze danych zawierających **donorów**. 
 Dotychczas najlepsze parametry to: 
-- Depth=10  
-- MinSamples=70 
+- Depth=20  
+- MinSamples=10 
 - MinGain=0.0
 - TrainSetSize=0.8
 
 Drzewo o tak skonfigurowanych parametrach zostało przeanalizowane za pomocą metody walidacji krzyżowej i uzyskało następujące wyniki:
-- Mean Accuracy: 0.8893
-- Mean Recall: 0.6640
-- Mean Precision: 0.7400
+- Mean Accuracy: 0.9285
+- Mean Recall: 0.8306
+- Mean Precision: 0.8329
 - Mean Confusion Matrix:
-    [[1468.66666667   88.66666667]
-    [ 125.          247.        ]]
-
+    [[1317.66666667   62.33333333]
+    [  63.          309.        ]]
 To drzewo jest też zapisane w pliku trees/best_donor_tree.txt
+
+Za to na zbiorze danych zawierającym akceptory, znalezione najlepsze parametry to:
+- Depth=40
+- MinSamples=110
+- MinGain=0.0
+- TrainSetSize=0.8
+
+Wynika to z faktu, że sekwencje DNA w tym zbiorze są znacznie dłuższe, składają się z 90 liter, podczas gdy te ze zbioru donorów jedynie z 15. Dlatego potrzebna jest większa głębokość drzewa i większa liczba próbek, aby móc poprawnie sklasyfikować sekwencje.
+
+
+==================== Processing Donors ====================
+---> Running Grid Search
+Best Accuracy found: 0.9503
+Parameters: Depth=5, MinSamples=2, MinGain=0.01, TrainSetSize=0.8
+
+---> Cross Validation for best parameters
+Mean Accuracy: 0.9479
+Mean Recall: 0.8817
+Mean Precision: 0.8749
+Mean Confusion Matrix:
+[[1332.66666667   47.33333333]
+ [  44.          328.        ]]
+
+==================== Processing Acceptors ====================
+---> Running Grid Search
+Best Accuracy found: 0.8965
+Parameters: Depth=20, MinSamples=70, MinGain=0.01, TrainSetSize=0.8
+
+---> Cross Validation for best parameters
+Mean Accuracy: 0.8906
+Mean Recall: 0.7142
+Mean Precision: 0.7176
+Mean Confusion Matrix:
+[[1452.66666667  104.66666667]
+ [ 106.33333333  265.66666667]]

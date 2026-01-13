@@ -1,229 +1,93 @@
-|--- CZY Pozycja DNA[67] jest w {'C', 'T'}?
+|--- CZY Pozycja DNA[11] jest w {'G'}?
 |    [TAK]
-    |--- CZY Pozycja DNA[64] jest w {'C', 'T'}?
+    |--- CZY Pozycja DNA[10] jest w {'A'}?
     |    [TAK]
-        |--- CZY Pozycja DNA[62] jest w {'G', 'A'}?
+        |--- CZY Pozycja DNA[9] jest w {'A', 'G'}?
         |    [TAK]
-            |--- CZY Pozycja DNA[60] jest w {'G', 'A'}?
+            |--- CZY Pozycja DNA[6] jest w {'G'}?
             |    [TAK]
-                |--- CZY Pozycja DNA[57] jest w {'T'}?
+                |--- CZY Pozycja DNA[5] jest w {'T', 'G'}?
                 |    [TAK]
-                    |--- CZY Pozycja DNA[61] jest w {'T'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 1
-                    |    [NIE]
-                        |--- WYNIK: Klasa 0
+                    |--- WYNIK: Klasa 1
                 |    [NIE]
-                    |--- CZY Pozycja DNA[65] jest w {'T'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- WYNIK: Klasa 0
+                    |--- WYNIK: Klasa 1
             |    [NIE]
-                |--- CZY Pozycja DNA[58] jest w {'C', 'T'}?
+                |--- CZY Pozycja DNA[12] jest w {'T'}?
                 |    [TAK]
-                    |--- CZY Pozycja DNA[63] jest w {'G', 'A'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- CZY Pozycja DNA[55] jest w {'G', 'A'}?
-                        |    [TAK]
-                            |--- WYNIK: Klasa 0
-                        |    [NIE]
-                            |--- CZY Pozycja DNA[19] jest w {'T'}?
-                            |    [TAK]
-                                |--- WYNIK: Klasa 0
-                            |    [NIE]
-                                |--- CZY Pozycja DNA[15] jest w {'T', 'A'}?
-                                |    [TAK]
-                                    |--- WYNIK: Klasa 1
-                                |    [NIE]
-                                    |--- WYNIK: Klasa 1
+                    |--- WYNIK: Klasa 1
                 |    [NIE]
-                    |--- CZY Pozycja DNA[53] jest w {'T'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- WYNIK: Klasa 0
-        |    [NIE]
-            |--- CZY Pozycja DNA[59] jest w {'G', 'A'}?
-            |    [TAK]
-                |--- CZY Pozycja DNA[58] jest w {'G', 'A'}?
-                |    [TAK]
-                    |--- CZY Pozycja DNA[65] jest w {'T'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- CZY Pozycja DNA[61] jest w {'G', 'A'}?
-                        |    [TAK]
-                            |--- WYNIK: Klasa 0
-                        |    [NIE]
-                            |--- WYNIK: Klasa 0
-                |    [NIE]
-                    |--- CZY Pozycja DNA[60] jest w {'G', 'A'}?
-                    |    [TAK]
-                        |--- CZY Pozycja DNA[18] jest w {'T'}?
-                        |    [TAK]
-                            |--- WYNIK: Klasa 0
-                        |    [NIE]
-                            |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- CZY Pozycja DNA[65] jest w {'T'}?
-                        |    [TAK]
-                            |--- WYNIK: Klasa 1
-                        |    [NIE]
-                            |--- WYNIK: Klasa 1
-            |    [NIE]
-                |--- CZY Pozycja DNA[61] jest w {'G', 'A'}?
-                |    [TAK]
-                    |--- CZY Pozycja DNA[54] jest w {'G', 'A'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- CZY Pozycja DNA[70] jest w {'C', 'T'}?
-                        |    [TAK]
-                            |--- WYNIK: Klasa 0
-                        |    [NIE]
-                            |--- WYNIK: Klasa 1
-                |    [NIE]
-                    |--- CZY Pozycja DNA[57] jest w {'G', 'A'}?
-                    |    [TAK]
-                        |--- CZY Pozycja DNA[65] jest w {'G', 'A'}?
-                        |    [TAK]
-                            |--- WYNIK: Klasa 0
-                        |    [NIE]
-                            |--- CZY Pozycja DNA[1] jest w {'C', 'T'}?
-                            |    [TAK]
-                                |--- WYNIK: Klasa 1
-                            |    [NIE]
-                                |--- WYNIK: Klasa 1
-                    |    [NIE]
-                        |--- CZY Pozycja DNA[83] jest w {'C'}?
-                        |    [TAK]
-                            |--- CZY Pozycja DNA[57] jest w {'T'}?
-                            |    [TAK]
-                                |--- WYNIK: Klasa 1
-                            |    [NIE]
-                                |--- WYNIK: Klasa 1
-                        |    [NIE]
-                            |--- CZY Pozycja DNA[51] jest w {'G', 'A'}?
-                            |    [TAK]
-                                |--- CZY Pozycja DNA[22] jest w {'G'}?
-                                |    [TAK]
-                                    |--- WYNIK: Klasa 1
-                                |    [NIE]
-                                    |--- WYNIK: Klasa 1
-                            |    [NIE]
-                                |--- CZY Pozycja DNA[5] jest w {'A'}?
-                                |    [TAK]
-                                    |--- WYNIK: Klasa 1
-                                |    [NIE]
-                                    |--- CZY Pozycja DNA[63] jest w {'A'}?
-                                    |    [TAK]
-                                        |--- WYNIK: Klasa 1
-                                    |    [NIE]
-                                        |--- WYNIK: Klasa 1
-    |    [NIE]
-        |--- CZY Pozycja DNA[61] jest w {'C', 'T'}?
-        |    [TAK]
-            |--- CZY Pozycja DNA[70] jest w {'G'}?
-            |    [TAK]
-                |--- CZY Pozycja DNA[58] jest w {'G', 'A'}?
-                |    [TAK]
                     |--- WYNIK: Klasa 0
-                |    [NIE]
-                    |--- CZY Pozycja DNA[63] jest w {'G', 'A'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- WYNIK: Klasa 1
-            |    [NIE]
-                |--- CZY Pozycja DNA[50] jest w {'G', 'A'}?
-                |    [TAK]
-                    |--- CZY Pozycja DNA[21] jest w {'A'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- WYNIK: Klasa 0
-                |    [NIE]
-                    |--- CZY Pozycja DNA[59] jest w {'G', 'A'}?
-                    |    [TAK]
-                        |--- CZY Pozycja DNA[60] jest w {'T'}?
-                        |    [TAK]
-                            |--- WYNIK: Klasa 0
-                        |    [NIE]
-                            |--- CZY Pozycja DNA[7] jest w {'A'}?
-                            |    [TAK]
-                                |--- WYNIK: Klasa 0
-                            |    [NIE]
-                                |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- CZY Pozycja DNA[51] jest w {'G', 'A'}?
-                        |    [TAK]
-                            |--- WYNIK: Klasa 0
-                        |    [NIE]
-                            |--- WYNIK: Klasa 0
         |    [NIE]
-            |--- CZY Pozycja DNA[16] jest w {'G', 'A'}?
+            |--- CZY Pozycja DNA[6] jest w {'G'}?
             |    [TAK]
-                |--- CZY Pozycja DNA[70] jest w {'G'}?
+                |--- CZY Pozycja DNA[5] jest w {'A', 'C'}?
                 |    [TAK]
-                    |--- WYNIK: Klasa 0
+                    |--- WYNIK: Klasa 1
                 |    [NIE]
-                    |--- CZY Pozycja DNA[31] jest w {'A'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- WYNIK: Klasa 0
+                    |--- WYNIK: Klasa 0
             |    [NIE]
                 |--- WYNIK: Klasa 0
+    |    [NIE]
+        |--- CZY Pozycja DNA[6] jest w {'G'}?
+        |    [TAK]
+            |--- CZY Pozycja DNA[9] jest w {'A'}?
+            |    [TAK]
+                |--- CZY Pozycja DNA[4] jest w {'A', 'C'}?
+                |    [TAK]
+                    |--- WYNIK: Klasa 1
+                |    [NIE]
+                    |--- WYNIK: Klasa 1
+            |    [NIE]
+                |--- CZY Pozycja DNA[5] jest w {'A'}?
+                |    [TAK]
+                    |--- WYNIK: Klasa 1
+                |    [NIE]
+                    |--- WYNIK: Klasa 0
+        |    [NIE]
+            |--- CZY Pozycja DNA[9] jest w {'A'}?
+            |    [TAK]
+                |--- CZY Pozycja DNA[5] jest w {'A'}?
+                |    [TAK]
+                    |--- WYNIK: Klasa 0
+                |    [NIE]
+                    |--- WYNIK: Klasa 0
+            |    [NIE]
+                |--- CZY Pozycja DNA[10] jest w {'C'}?
+                |    [TAK]
+                    |--- WYNIK: Klasa 0
+                |    [NIE]
+                    |--- WYNIK: Klasa 0
 |    [NIE]
-    |--- CZY Pozycja DNA[67] jest w {'A'}?
+    |--- CZY Pozycja DNA[6] jest w {'G'}?
     |    [TAK]
-        |--- CZY Pozycja DNA[63] jest w {'G', 'A'}?
+        |--- CZY Pozycja DNA[9] jest w {'A'}?
         |    [TAK]
-            |--- CZY Pozycja DNA[28] jest w {'G'}?
+            |--- CZY Pozycja DNA[5] jest w {'A'}?
             |    [TAK]
-                |--- CZY Pozycja DNA[80] jest w {'C'}?
+                |--- CZY Pozycja DNA[4] jest w {'T'}?
                 |    [TAK]
                     |--- WYNIK: Klasa 0
                 |    [NIE]
-                    |--- WYNIK: Klasa 0
+                    |--- WYNIK: Klasa 1
             |    [NIE]
-                |--- WYNIK: Klasa 0
+                |--- CZY Pozycja DNA[10] jest w {'A'}?
+                |    [TAK]
+                    |--- WYNIK: Klasa 1
+                |    [NIE]
+                    |--- WYNIK: Klasa 0
         |    [NIE]
-            |--- CZY Pozycja DNA[59] jest w {'T'}?
+            |--- CZY Pozycja DNA[5] jest w {'A'}?
             |    [TAK]
-                |--- CZY Pozycja DNA[56] jest w {'T'}?
+                |--- CZY Pozycja DNA[4] jest w {'A', 'C'}?
                 |    [TAK]
                     |--- WYNIK: Klasa 0
                 |    [NIE]
-                    |--- CZY Pozycja DNA[57] jest w {'T'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- WYNIK: Klasa 0
+                    |--- WYNIK: Klasa 0
             |    [NIE]
-                |--- CZY Pozycja DNA[58] jest w {'T'}?
+                |--- CZY Pozycja DNA[10] jest w {'A'}?
                 |    [TAK]
-                    |--- CZY Pozycja DNA[52] jest w {'G', 'A'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- WYNIK: Klasa 0
+                    |--- WYNIK: Klasa 0
                 |    [NIE]
-                    |--- CZY Pozycja DNA[0] jest w {'T'}?
-                    |    [TAK]
-                        |--- WYNIK: Klasa 0
-                    |    [NIE]
-                        |--- WYNIK: Klasa 0
+                    |--- WYNIK: Klasa 0
     |    [NIE]
-        |--- CZY Pozycja DNA[66] jest w {'C'}?
-        |    [TAK]
-            |--- CZY Pozycja DNA[63] jest w {'T'}?
-            |    [TAK]
-                |--- WYNIK: Klasa 0
-            |    [NIE]
-                |--- WYNIK: Klasa 0
-        |    [NIE]
-            |--- WYNIK: Klasa 0
+        |--- WYNIK: Klasa 0
