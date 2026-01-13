@@ -13,13 +13,17 @@ def run_grid_search(data):
     best_accuracy = 0
     best_config = {}
 
-    for train_set_size in np.arange(0.1, 1.0, 0.1):
-        train_data, test_data = stratified_split_data(data, train_set_size)
-        
-        for depth in (5, 10, 15, 20, 40):
-            for min_samples in (2, 10, 50):
-                for min_gain in (0.0, 0.01, 0.05):
-                    dt = DecisionTree(train_data, max_depth=depth, min_samples_split=min_samples, min_gain=min_gain)
+    train_sizes = np.arange(0.8, 1.0, 0.1)
+    depths = (5, 10, 20, 40)
+    min_samples = (2, 10, 30, 50, 70)
+    min_gains = (0.0, 0.01, 0.1, 0.2)
+
+    for train_set_size in train_sizes:
+        train_data, test_data = stratified_split_data(data, train_set_size)    
+        for d in depths:
+            for ms in min_samples:
+                for mg in min_gains:
+                    dt = DecisionTree(train_data, max_depth=d, min_samples_split=ms, min_gain=mg)
                     dt.train()
                     accuracy, _, _, _ = calculate_metrics(dt, test_data)
                     
@@ -28,9 +32,9 @@ def run_grid_search(data):
                         best_config = {
                             "accuracy": accuracy,
                             "train_set_size": train_set_size,
-                            "depth": depth,
-                            "min_samples_split": min_samples,
-                            "min_gain": min_gain,
+                            "depth": d,
+                            "min_samples_split": ms,
+                            "min_gain": mg,
                             "tree": dt
                         }
     return best_config
@@ -39,20 +43,23 @@ def perform_cross_validation(data, depth, min_samples_split, min_gain, k=5):
     folds = k_fold_split(data, k)
     accuracies = []
     recalls = []
-    precisions = []
+    precisions=[]
+    conf_matrices = []
     
     for i, (train_data, test_data) in enumerate(folds):
         dt = DecisionTree(train_data, max_depth=depth, min_samples_split=min_samples_split, min_gain=min_gain)
         dt.train()
-        acc, _, rec, prec = calculate_metrics(dt, test_data)
+        acc, cm, rec, prec = calculate_metrics(dt, test_data)
         accuracies.append(acc)
         recalls.append(rec)
         precisions.append(prec)
+        conf_matrices.append(cm)
         
     return {
         "mean_accuracy": np.mean(accuracies),
         "mean_recall": np.mean(recalls),
-        "mean_precision": np.mean(precisions)
+        "mean_precision": np.mean(precisions),
+        "mean_confusion_matrix": np.mean(conf_matrices, axis=0)
     }
 
 def calculate_metrics(tree_model, test_data):
