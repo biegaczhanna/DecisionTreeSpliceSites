@@ -8,12 +8,17 @@ from algorithms.DecisionTree import DecisionTree, print_tree
 from helper_methods import run_grid_search, perform_cross_validation, stratified_split_data, calculate_metrics
 from contextlib import redirect_stdout
 import os
-GRID_SEARCH = False
-FILES = [
-    ("Donors", "data/spliceATrainKIS.dat.txt"),
-    # ("Acceptors", "data/spliceBTrain.dat.txt") 
-]
+
+
+GRID_SEARCH = False # Change to false if you want to create a single decision tree
 CROSS_VALIDATION_FOLDS = 3
+GRID_SEARCH_CV_FOLDS = 3 
+
+FILES = [
+    ("Donors", "data/spliceDTrainKIS.dat.txt"),
+    ("Acceptors", "data/spliceATrainKIS.dat.txt") 
+]
+
 def main():
     if GRID_SEARCH:
         for name, file_path in FILES:
@@ -26,7 +31,7 @@ def main():
             data = fp.parse()
 
             print(f"---> Running Grid Search")
-            best_result = run_grid_search(data)
+            best_result = run_grid_search(data, cv_folds=GRID_SEARCH_CV_FOLDS)
             
             print(f"Best Accuracy found: {best_result['accuracy']:.4f}")
             print(f"Parameters: Depth={best_result['depth']}, "
@@ -68,7 +73,7 @@ def main():
         print(f"Precision: {p}")
         print(f"Confusion matrix:\n{cm}")
 
-        with open(f"decision_tree.txt", 'w') as f:
+        with open(f"trees/decision_tree.txt", 'w') as f:
                 with redirect_stdout(f):
                     print_tree(dt.root, 0)
 

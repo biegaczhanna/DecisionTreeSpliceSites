@@ -8,36 +8,52 @@ from sklearn.metrics import accuracy_score, confusion_matrix, recall_score, prec
 from algorithms.DecisionTree import DecisionTree
 import numpy as np
 import random
+from itertools import product
 
-def run_grid_search(data):
+def run_grid_search(data, cv_folds=None):
     best_accuracy = 0
     best_config = {}
 
-    train_sizes = np.arange(0.8, 1.0, 0.1)
-    depths = (5, 10, 20, 40)
-    min_samples = (2, 10, 30, 50, 70)
+    train_sizes = [0.8,] # np.arange(0.1, 1.0, 0.1)
+    depths = (5, 7,  10, 15, 20, 40)
+    min_samples = (2, 10, 30, 50, 70, 90, 110)
     min_gains = (0.0, 0.01, 0.1, 0.2)
 
-    for train_set_size in train_sizes:
-        train_data, test_data = stratified_split_data(data, train_set_size)    
-        for d in depths:
-            for ms in min_samples:
-                for mg in min_gains:
-                    dt = DecisionTree(train_data, max_depth=d, min_samples_split=ms, min_gain=mg)
-                    dt.train()
-                    accuracy, _, _, _ = calculate_metrics(dt, test_data)
-                    
-                    if accuracy > best_accuracy:
+    for train_set_size, d, ms, mg in product(train_sizes, depths, min_samples, min_gains):
+        accuracy, tree_model = _evaluate_config(data, train_set_size, d, ms, mg, cv_folds)
+        
+        if accuracy > best_accuracy:
                         best_accuracy = accuracy
                         best_config = {
-                            "accuracy": accuracy,
+                            "accuracy": best_accuracy,
                             "train_set_size": train_set_size,
                             "depth": d,
                             "min_samples_split": ms,
                             "min_gain": mg,
-                            "tree": dt
+                            "tree": tree_model
                         }
     return best_config
+
+def _evaluate_config(data, train_set_size, depth, min_samples_split, min_gain, cv_folds):
+    """
+    Evaluates a specific configuration using Cross-Validation or a stratified split.
+    """
+    if cv_folds and cv_folds > 1:
+        results = perform_cross_validation(data, depth, min_samples_split, min_gain, k=cv_folds)
+        mean_acc = results['mean_accuracy']
+        
+        train_data_rep, _ = stratified_split_data(data, 0.8) # Default fallback
+        dt_rep = DecisionTree(train_data_rep, max_depth=depth, min_samples_split=min_samples_split, min_gain=min_gain)
+        dt_rep.train()
+        
+        return mean_acc, dt_rep
+
+    else:
+        train_data, test_data = stratified_split_data(data, train_set_size)
+        dt = DecisionTree(train_data, max_depth=depth, min_samples_split=min_samples_split, min_gain=min_gain)
+        dt.train()
+        accuracy, _, _, _ = calculate_metrics(dt, test_data)
+        return accuracy, dt
 
 def perform_cross_validation(data, depth, min_samples_split, min_gain, k=5):
     folds = k_fold_split(data, k)
@@ -124,7 +140,6 @@ def k_fold_split(data, k=5):
     random.shuffle(positives)
     random.shuffle(negatives)
     
-    # Split into k chunks (stratified)
     pos_chunks = [positives[i::k] for i in range(k)]
     neg_chunks = [negatives[i::k] for i in range(k)]
     
