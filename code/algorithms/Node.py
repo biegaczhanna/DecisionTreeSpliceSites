@@ -1,4 +1,7 @@
 '''
+
+Author: Ada Jacyna
+
 Object Node defines current state of a specified branch of the decision tree. It describes:
     --- attribute_pos --- the attribute position currently being considered
     --- split_condition_group --- set of the letters that was obtained after the split

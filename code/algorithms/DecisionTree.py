@@ -1,14 +1,17 @@
+'''
+    Author: Ada Jacyna, Hanna Biegacz
+    Implementation for a decision tree clasificator.
+'''
 import math
 from itertools import combinations
 from algorithms.Node import Node
 
-'''
-Implementation for a decision tree clasificator
-'''
 class DecisionTree:
-    def __init__(self, data_set, max_depth=5):
+    def __init__(self, data_set, max_depth=5, min_samples_split=0, min_gain=0.0):
         self.data = data_set
         self.max_depth = max_depth
+        self.min_samples_split = min_samples_split
+        self.min_gain = min_gain
         self.possible_splits = self.generate_attribute_sets()
         self.root = None
 
@@ -36,8 +39,7 @@ class DecisionTree:
 
         w_left = len(left) / total_S
         w_right = len(right) / total_S
-        inf_gain = self.entropy(parent) - (w_left * self.entropy(left)) + (w_right * self.entropy(right))
-        
+        inf_gain = self.entropy(parent) - (w_left * self.entropy(left)) - (w_right * self.entropy(right))        
         return inf_gain
 
     '''
@@ -88,6 +90,10 @@ class DecisionTree:
             return Node(class_value=0)
         
         # Classes have been sorted
+        if len(data) < self.min_samples_split:
+            return Node(class_value=self.get_majority_class(data))
+
+        # Classes have been sorted
         first_class = data[0][0]
         if all(row[0] == first_class for row in data):
             return Node(class_value=first_class)
@@ -99,7 +105,7 @@ class DecisionTree:
         # BEST SPLIT CHOICE
         best_gain, split_details = self.choose_best_split(data)
         
-        if best_gain <= 0:
+        if best_gain <= self.min_gain:
             return Node(class_value=self.get_majority_class(data))
         
         attr_pos, group, left_data, right_data = split_details
@@ -113,6 +119,15 @@ class DecisionTree:
             left_node=left_node,
             right_node=right_node
         )
+
+    def predict(self, sample):
+        current_node = self.root
+        while current_node.class_value is None:
+            if sample[current_node.attribute_pos] in current_node.split_condition_group:
+                current_node = current_node.left_node
+            else:
+                current_node = current_node.right_node
+        return current_node.class_value
 
 def print_tree(node, depth=0):
     indent = "    " * depth

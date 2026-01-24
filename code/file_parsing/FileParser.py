@@ -1,3 +1,10 @@
+'''
+    Author: Ada Jacyna
+    This file contains FileParser class, which is responsible for parsing the data from the file. 
+    It is used in main.py to manage data from the files in the data/ directory. 
+    
+'''
+
 class FileParser:
     def __init__(self, path: str):
         self.path = path
