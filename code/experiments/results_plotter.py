@@ -134,7 +134,7 @@ def plot_and_save_results(file_path):
         print(f"  Saved plot: {output_path}")
 
 if __name__ == "__main__":
-    results_directory = "results"
+    results_directory = os.path.join(os.path.dirname(__file__), "results")
     if os.path.exists(results_directory):
         for filename in os.listdir(results_directory):
             if filename.endswith("_parameter_influence.txt"):

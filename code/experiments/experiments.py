@@ -11,17 +11,23 @@ import os
 import sys
 from copy import deepcopy
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from file_parsing.FileParser import FileParser as file_parser
-from helper_methods import evaluate_config
+from helper_methods import evaluate_config, run_experiment
 from results_plotter import plot_and_save_results
 
 
+
+DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'data'))
+RESULTS_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'results'))
+
 FILES = [
-    ("Donors", "data/spliceDTrainKIS.dat.txt"),
-    ("Acceptors", "data/spliceATrainKIS.dat.txt") 
+    ("Donors", os.path.join(DATA_DIR, "spliceDTrainKIS.dat.txt")),
+    ("Acceptors", os.path.join(DATA_DIR, "spliceATrainKIS.dat.txt")) 
 ]
 
-# Base configurations to hold constant while varying other parameters
+# Base configutation to set while changing the other parameters
 BASE_CONFIGS = {
     "Donors": {
         "depth": 5,
@@ -48,22 +54,10 @@ TEST_RANGES = {
     },
 }
 
-def run_experiment(data, depth, min_samples_split, min_gain):
-    cross_validation_reps = 10
-    acc, cm, rec, prec, model = evaluate_config(data, 0, depth, min_samples_split, min_gain, cross_validation_reps)
-    return {
-        "accuracy": acc,
-        "confusion_matrix": cm,
-        "recall": rec,
-        "precision": prec,
-        "depth": depth,
-        "min_samples_split": min_samples_split,
-        "min_gain": min_gain
-    }
 
 def main():
-    if not os.path.exists("experiment_results"):
-        os.makedirs("experiment_results")
+    if not os.path.exists(RESULTS_DIR):
+        os.makedirs(RESULTS_DIR)
 
     for name, file_path in FILES:
         if not os.path.exists(file_path):
@@ -99,7 +93,7 @@ def main():
             
             analysis_results[param_name] = param_results
 
-        output_filename = f"experiment_results/{name}_parameter_influence.txt"
+        output_filename = os.path.join(RESULTS_DIR, f"{name}_parameter_influence.txt")
         with open(output_filename, 'w') as f:
             for param_name, results in analysis_results.items():
                 fixed_params = {k: v for k, v in base_config.items() if k != param_name}
