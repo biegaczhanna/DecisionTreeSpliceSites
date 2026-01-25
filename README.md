@@ -36,7 +36,7 @@ Za to na zbiorze danych zawierającym akceptory, znalezione najlepsze parametry 
 
 Wynika to z faktu, że sekwencje DNA w tym zbiorze są znacznie dłuższe, składają się z 90 liter, podczas gdy te ze zbioru donorów jedynie z 15. Dlatego potrzebna jest większa głębokość drzewa i większa liczba próbek, aby móc poprawnie sklasyfikować sekwencje.
 
-
+```bash
 ==================== Processing Donors ====================
 ---> Running Grid Search
 Best Accuracy found: 0.9503
@@ -62,3 +62,4 @@ Mean Precision: 0.7176
 Mean Confusion Matrix:
 [[1452.66666667  104.66666667]
  [ 106.33333333  265.66666667]]
+```
