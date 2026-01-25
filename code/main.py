@@ -34,6 +34,9 @@ def main():
             best_result = run_grid_search(data, cv_folds=GRID_SEARCH_CV_FOLDS)
             
             print(f"Best Accuracy found: {best_result['accuracy']:.4f}")
+            print(f"Recall: {best_result['recall']:.4f}")
+            print(f"Precision: {best_result['precision']:.4f}")
+            print(f"Confusion Matrix:\n{best_result['confusion_matrix']}")
             print(f"Parameters: Depth={best_result['depth']}, "
                 f"MinSamples={best_result['min_samples_split']}, "
                 f"MinGain={best_result['min_gain']}, "
