@@ -1,3 +1,12 @@
+'''
+  Author: Hanna Biegacz
+  
+  This file contains the script for running parameter experiments on the decision tree classifier.
+  The script runs experiments for both donors and acceptors. You can find the results in the results/ folder.
+  Automatically generates plots for the results and saves them in the results/plots/ folder.
+
+'''
+
 import os
 import sys
 from copy import deepcopy
@@ -53,8 +62,8 @@ def run_experiment(data, depth, min_samples_split, min_gain):
     }
 
 def main():
-    if not os.path.exists("results"):
-        os.makedirs("results")
+    if not os.path.exists("experiment_results"):
+        os.makedirs("experiment_results")
 
     for name, file_path in FILES:
         if not os.path.exists(file_path):
@@ -90,7 +99,7 @@ def main():
             
             analysis_results[param_name] = param_results
 
-        output_filename = f"results/{name}_parameter_influence.txt"
+        output_filename = f"experiment_results/{name}_parameter_influence.txt"
         with open(output_filename, 'w') as f:
             for param_name, results in analysis_results.items():
                 fixed_params = {k: v for k, v in base_config.items() if k != param_name}
