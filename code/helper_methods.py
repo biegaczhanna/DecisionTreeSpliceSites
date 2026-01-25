@@ -20,12 +20,15 @@ def run_grid_search(data, cv_folds=None):
     min_gains = (0.0, 0.01, 0.1, 0.2)
 
     for train_set_size, d, ms, mg in product(train_sizes, depths, min_samples, min_gains):
-        accuracy, tree_model = _evaluate_config(data, train_set_size, d, ms, mg, cv_folds)
+        accuracy, cm, rec, prec, tree_model = evaluate_config(data, train_set_size, d, ms, mg, cv_folds)
         
         if accuracy > best_accuracy:
                         best_accuracy = accuracy
                         best_config = {
                             "accuracy": best_accuracy,
+                            "confusion_matrix": cm,
+                            "recall": rec,
+                            "precision": prec,
                             "train_set_size": train_set_size,
                             "depth": d,
                             "min_samples_split": ms,
@@ -34,26 +37,29 @@ def run_grid_search(data, cv_folds=None):
                         }
     return best_config
 
-def _evaluate_config(data, train_set_size, depth, min_samples_split, min_gain, cv_folds):
+def evaluate_config(data, train_set_size, depth, min_samples_split, min_gain, cv_folds):
     """
     Evaluates a specific configuration using Cross-Validation or a stratified split.
     """
     if cv_folds and cv_folds > 1:
         results = perform_cross_validation(data, depth, min_samples_split, min_gain, k=cv_folds)
         mean_acc = results['mean_accuracy']
+        mean_rec = results['mean_recall']
+        mean_prec = results['mean_precision']
+        mean_cm = results['mean_confusion_matrix']
         
         train_data_rep, _ = stratified_split_data(data, 0.8) # Default fallback
         dt_rep = DecisionTree(train_data_rep, max_depth=depth, min_samples_split=min_samples_split, min_gain=min_gain)
         dt_rep.train()
         
-        return mean_acc, dt_rep
+        return mean_acc, mean_cm, mean_rec, mean_prec, dt_rep
 
     else:
         train_data, test_data = stratified_split_data(data, train_set_size)
         dt = DecisionTree(train_data, max_depth=depth, min_samples_split=min_samples_split, min_gain=min_gain)
         dt.train()
-        accuracy, _, _, _ = calculate_metrics(dt, test_data)
-        return accuracy, dt
+        accuracy, conf_matrix, recall, precision = calculate_metrics(dt, test_data)
+        return accuracy, conf_matrix, recall, precision, dt
 
 def perform_cross_validation(data, depth, min_samples_split, min_gain, k=5):
     folds = k_fold_split(data, k)
