@@ -10,13 +10,15 @@ from contextlib import redirect_stdout
 import os
 
 
-GRID_SEARCH = False # Change to false if you want to create a single decision tree
-CROSS_VALIDATION_FOLDS = 3
-GRID_SEARCH_CV_FOLDS = 3 
+GRID_SEARCH = True # Change to false if you want to create a single decision tree
+CROSS_VALIDATION_FOLDS = 10
+GRID_SEARCH_CV_FOLDS = 10 
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 FILES = [
-    ("Donors", "data/spliceDTrainKIS.dat.txt"),
-    ("Acceptors", "data/spliceATrainKIS.dat.txt") 
+    # ("Donors", os.path.join(BASE_DIR, "data/spliceDTrainKIS.dat.txt")),
+    ("Acceptors", os.path.join(BASE_DIR, "data/spliceATrainKIS.dat.txt")) 
 ]
 
 def main():

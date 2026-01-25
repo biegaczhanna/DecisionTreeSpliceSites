@@ -15,9 +15,9 @@ def run_grid_search(data, cv_folds=None):
     best_config = {}
 
     train_sizes = [0.8,] # np.arange(0.1, 1.0, 0.1)
-    depths = (5, 7,  10, 15, 20, 40)
-    min_samples = (2, 10, 30, 50, 70, 90, 110)
-    min_gains = (0.0, 0.01, 0.1, 0.2)
+    depths = (5, 7, 9, 10, 15, 18, 20, 40, 60, 80, 100)
+    min_samples = (2, 10, 30, 35, 40,  50, 70, 90, 110)
+    min_gains = (0.0, 0.01, 0.04, 0.05, 0.06,  0.1, 0.2)
 
     for train_set_size, d, ms, mg in product(train_sizes, depths, min_samples, min_gains):
         accuracy, cm, rec, prec, tree_model = evaluate_config(data, train_set_size, d, ms, mg, cv_folds)

@@ -14,18 +14,18 @@ Jeżeli chodzi o dane to w tym pliku znajdują się przykłady donorów, a w tym
 # Dobór parametrów
 Za pomocą metody grid search przeanalizowano szeroki zakres doboru parametrów dla drzewa decyzyjnego. Poniżej przedstawione są wyniki uzyskane na zbiorze danych zawierających **donorów**. 
 Dotychczas najlepsze parametry to: 
-- Depth=20  
-- MinSamples=10 
-- MinGain=0.0
+- Depth=7  
+- MinSamples=30 
+- MinGain=0.06
 - TrainSetSize=0.8
 
 Drzewo o tak skonfigurowanych parametrach zostało przeanalizowane za pomocą metody walidacji krzyżowej i uzyskało następujące wyniki:
-- Mean Accuracy: 0.9285
-- Mean Recall: 0.8306
-- Mean Precision: 0.8329
+- Mean Accuracy: 0.9503
+- Mean Recall: 0.8835
+- Mean Precision: 0.8833
 - Mean Confusion Matrix:
-    [[1317.66666667   62.33333333]
-    [  63.          309.        ]]
+    [[400.9  13.1]
+    [ 13.   98.6]]
 To drzewo jest też zapisane w pliku trees/best_donor_tree.txt
 
 Za to na zbiorze danych zawierającym akceptory, znalezione najlepsze parametry to:
