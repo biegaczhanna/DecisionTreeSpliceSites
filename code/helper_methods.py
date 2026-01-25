@@ -1,8 +1,8 @@
-#
-#   Author: Hanna Biegacz
-#   This file contains helper methods for the main.py file, 
-#   such as data splitting and model evaluation.
-#
+'''
+   Author: Hanna Biegacz
+   This file contains helper methods for the main.py file, 
+   such as data splitting and model evaluation.
+'''
 
 from sklearn.metrics import accuracy_score, confusion_matrix, recall_score, precision_score
 from algorithms.DecisionTree import DecisionTree
@@ -106,6 +106,18 @@ def calculate_metrics(tree_model, test_data):
 
     return accuracy, conf_matrix, recall, precision
 
+def run_experiment(data, depth, min_samples_split, min_gain):
+    cross_validation_reps = 1
+    acc, cm, rec, prec, model = evaluate_config(data, 0, depth, min_samples_split, min_gain, cross_validation_reps)
+    return {
+        "accuracy": acc,
+        "confusion_matrix": cm,
+        "recall": rec,
+        "precision": prec,
+        "depth": depth,
+        "min_samples_split": min_samples_split,
+        "min_gain": min_gain
+    }
 
 # DIFFERENT METHODS OF SPLITTING DATA
 
