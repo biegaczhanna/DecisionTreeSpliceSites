@@ -30,27 +30,28 @@ FILES = [
 # Base configutation to set while changing the other parameters
 BASE_CONFIGS = {
     "Donors": {
-        "depth": 5,
-        "min_samples_split": 30,
+        "depth": 15,
+        "min_samples_split": 15,
         "min_gain": 0.00
     },
     "Acceptors": {
-        "depth": 20,
-        "min_samples_split": 50,
+        "depth": 25,
+        "min_samples_split": 40,
         "min_gain": 0.00
     }
 }
 
+
 TEST_RANGES = {
     "Donors": {
         "depth": [3, 5, 7, 10, 15, 20, 40, 60, 80, 100, 120],
-        "min_samples_split": [1, 2, 10, 30, 50, 70, 90, 110],
-        "min_gain": [0.0, 0.01, 0.02, 0.05, 0.06, 0.08, 0.09, 0.1, 0.2]
+        "min_samples_split": [1, 2, 10, 30, 50, 70, 90, 110, 130],
+        "min_gain": [0.0, 0.01, 0.02, 0.05, 0.06, 0.08, 0.09, 0.1, 0.2, 0.5]
     },
     "Acceptors": {
-        "depth": [3, 5, 7, 10, 15, 20, 40, 50, 60, 80, 100, 120],
-        "min_samples_split": [1, 2, 10, 30, 50, 70, 90, 110],
-        "min_gain": [0.0, 0.01, 0.02, 0.05, 0.06, 0.08, 0.09, 0.1, 0.2]
+        "depth": [3, 5, 7, 10, 15, 20, 40, 60, 80, 100, 120],
+        "min_samples_split": [1, 2, 10, 30, 50, 70, 90, 110, 130],
+        "min_gain": [0.0, 0.01, 0.02, 0.05, 0.06, 0.08, 0.09, 0.1, 0.2, 0.5]
     },
 }
 

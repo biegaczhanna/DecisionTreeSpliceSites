@@ -107,7 +107,7 @@ def calculate_metrics(tree_model, test_data):
     return accuracy, conf_matrix, recall, precision
 
 def run_experiment(data, depth, min_samples_split, min_gain):
-    cross_validation_reps = 1
+    cross_validation_reps = 10
     acc, cm, rec, prec, model = evaluate_config(data, 0, depth, min_samples_split, min_gain, cross_validation_reps)
     return {
         "accuracy": acc,
